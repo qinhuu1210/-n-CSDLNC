@@ -9,13 +9,17 @@ README này gộp hướng dẫn chạy transaction, hướng dẫn sự cố v�
 ```text
 .
 ├── README.md
+├── 01_tao_bang.sql
+├── 02_rang_buoc_trigger_thu_tuc.sql
+├── 03_du_lieu_mau.sql
+├── 04_kiem_thu.sql
 ├── 05_demo_pgadmin.sql
 └── su_co/
     ├── du_lieu_goc/
     │   ├── 01_tao_bang.sql
     │   ├── 02_rang_buoc_trigger_thu_tuc.sql
     │   ├── 03_du_lieu_mau.sql
-│   └── 04_kiem_thu.sql
+    │   └── 04_kiem_thu.sql
     ├── sql_ho_tro/
     │   ├── chuan_bi.sql
     │   └── kiem_tra.sql
@@ -32,6 +36,8 @@ README này gộp hướng dẫn chạy transaction, hướng dẫn sự cố v�
     ├── KET_QUA_THUC_NGHIEM.md
     └── ket_qua/
 ```
+
+Bốn file SQL 01–04 nằm ngay ở thư mục này để mở trong pgAdmin. Các bản sao trong `su_co/du_lieu_goc/` phục vụ nút tự động nạp dữ liệu; không cần chạy cả hai bộ.
 
 Thư mục `su_co/may_chu_thu_nghiem/` được tạo khi chạy lần đầu, chứa dữ liệu máy chủ thử nghiệm. Không cần đưa thư mục này lên Git.
 
@@ -61,11 +67,11 @@ Máy chủ sự cố có thư mục dữ liệu và tiến trình riêng. Tạo 
 
 | Thứ tự | File | Nội dung |
 |---|---|---|
-| 1 | [01_tao_bang.sql](su_co/du_lieu_goc/01_tao_bang.sql) | Tạo bảng và các ràng buộc cấu trúc |
-| 2 | [02_rang_buoc_trigger_thu_tuc.sql](su_co/du_lieu_goc/02_rang_buoc_trigger_thu_tuc.sql) | Tạo trigger, thủ tục ghi sổ và view kiểm tra |
-| 3 | [03_du_lieu_mau.sql](su_co/du_lieu_goc/03_du_lieu_mau.sql) | Nạp dữ liệu kế toán giả lập |
+| 1 | [01_tao_bang.sql](01_tao_bang.sql) | Tạo bảng và các ràng buộc cấu trúc |
+| 2 | [02_rang_buoc_trigger_thu_tuc.sql](02_rang_buoc_trigger_thu_tuc.sql) | Tạo trigger, thủ tục ghi sổ và view kiểm tra |
+| 3 | [03_du_lieu_mau.sql](03_du_lieu_mau.sql) | Nạp dữ liệu kế toán giả lập |
 
-Có thể chạy [04_kiem_thu.sql](su_co/du_lieu_goc/04_kiem_thu.sql) một lần sau file 03 để kiểm tra các ràng buộc. File này không bắt buộc để chạy file 05. Với các bài kiểm thử cố tình nhập sai, hệ thống chặn được lỗi thì kết quả kiểm thử vẫn là PASS.
+Có thể chạy [04_kiem_thu.sql](04_kiem_thu.sql) một lần sau file 03 để kiểm tra các ràng buộc. File này không bắt buộc để chạy file 05. Với các bài kiểm thử cố tình nhập sai, hệ thống chặn được lỗi thì kết quả kiểm thử vẫn là PASS.
 
 **File 01 có lệnh DROP TABLE. Chỉ chạy trên database demo mới hoặc database có thể dựng lại.** Không chạy lại file này chỉ để lặp một tình huống.
 
