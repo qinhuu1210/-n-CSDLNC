@@ -37,6 +37,6 @@ Mỗi thư mục có bảng CSV sau phục hồi, kết quả kiểm tra, log s�
 
 Sau kiểm tra, server thử nghiệm đã được tắt bình thường. Mở lại bằng 01_CHUAN_BI_VA_MO.cmd khi cần demo; dữ liệu và lịch sử cũ được giữ nguyên.
 
-## Kiểm tra cách demo một nút
+## Lượt kiểm tra bổ sung đã lưu
 
-Đã kiểm tra thêm một lượt với DEMO_MOT_NUT.cmd và bộ điều khiển 08_demo_mot_nut.ps1. Một lần chạy tự thực hiện ngắt bất thường, khởi động, đối chiếu dữ liệu và lưu log. Lượt mang mã 67: D4-OK-67 vẫn có 1 chứng từ, 1 chi tiết, 2 dòng sổ cái, Nợ = Có = 100.000; D4-OPEN-67 không còn chứng từ, chi tiết hay sổ cái. Log ghi nhận WAL recovery hoàn tất, kiểm tra trả về PASS. Minh chứng nằm trong ket_qua/lan_67_20261024_233718_360. Đây vẫn là thực nghiệm bằng phiên psql giữ giao dịch mở, chưa phải ảnh chụp giao diện pgAdmin.
+Lượt kiểm tra bổ sung được thực hiện bằng bản điều khiển tự động tại thời điểm kiểm thử. Bản bàn giao hiện tại sử dụng các nút riêng 02, 03 và 04 để thực hiện từng bước; dữ liệu minh chứng của lượt cũ được giữ nguyên. Lượt mang mã 67: D4-OK-67 vẫn có 1 chứng từ, 1 chi tiết, 2 dòng sổ cái, Nợ = Có = 100.000; D4-OPEN-67 không còn chứng từ, chi tiết hay sổ cái. Log ghi nhận WAL recovery hoàn tất, kiểm tra trả về PASS. Minh chứng nằm trong ket_qua/lan_67_20261024_233718_360. Đây vẫn là thực nghiệm bằng phiên psql giữ giao dịch mở, chưa phải ảnh chụp giao diện pgAdmin.

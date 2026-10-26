@@ -56,9 +56,9 @@ END $$;
 SELECT * FROM demo4_crash_results ORDER BY loai;
 -- Trong phien nay: ca hai chung tu deu hien thi, nhung D4-OPEN-* CHUA COMMIT.
 -- CHUP ANH BANG NAY. Khong bam Commit, Rollback, dong tab hay ngat ket noi.
--- Cach don gian: sang File Explorer, nhap dup DEMO_MOT_NUT.cmd.
--- Nut nay tu ngat -> khoi dong lai -> hien ket qua -> luu log.
--- Hoac chay 02_GAY_SU_CO.cmd, roi 03_KHOI_DONG_LAI.cmd neu muon tach tung buoc.
+-- Sang File Explorer, chay 02_GAY_SU_CO.cmd de ngat server demo.
+-- Sau do chay 03_KHOI_DONG_LAI.cmd va doi server san sang.
+-- Mo Query Tool moi de chay 6C, roi chay 04_LUU_KET_QUA.cmd.
 
 -- KHOI 6C: SAU KHI KHOI DONG LAI, mo Query Tool moi cung server/database.
 -- Khong can chay lai 6A/6B. Ma luot demo da duoc luu trong CSDL.

@@ -30,9 +30,7 @@ README này gộp hướng dẫn chạy transaction, hướng dẫn sự cố v�
     ├── 04_LUU_KET_QUA.cmd
     ├── 05_TAT_SAU_DEMO.cmd
     ├── 06_XEM_LOG.cmd
-    ├── DEMO_MOT_NUT.cmd
     ├── 07_dieu_khien.ps1
-    ├── 08_demo_mot_nut.ps1
     ├── KET_QUA_THUC_NGHIEM.md
     └── ket_qua/
 ```
@@ -170,16 +168,17 @@ Nút chuẩn bị tự tạo máy chủ riêng và nạp bản sao file 01–03.
 
 Máy chủ chỉ lắng nghe trên `127.0.0.1`. Tài khoản không mật khẩu và cấu hình hiện tại chỉ dành cho dữ liệu giả lập trong môi trường thử nghiệm cục bộ.
 
-## 8. Demo sự cố bằng một nút
+## 8. Demo sự cố theo từng bước
 
 | Bước | Thao tác | Kết quả mong đợi |
 |---|---|---|
 | 1 | Trong pgAdmin, chạy riêng khối `6A` | Tạo chứng từ `DA_COMMIT` trị giá 100.000 và COMMIT |
 | 2 | Trong chính tab đó, chạy riêng khối `6B` | Tạo chứng từ `CHUA_COMMIT` trị giá 200.000; chưa kết thúc giao dịch |
 | 3 | Chụp bảng kết quả ở 6B | Trong phiên này thấy cả hai chứng từ |
-| 4 | Trong File Explorer, nhấp đúp [DEMO_MOT_NUT.cmd](su_co/DEMO_MOT_NUT.cmd) | Tự ngắt máy chủ → khởi động lại → kiểm tra và lưu kết quả |
-| 5 | Xem và chụp bảng trong cửa sổ điều khiển | `DA_COMMIT` còn; `CHUA_COMMIT` không còn; kiểm tra PASS |
-| 6 | Nếu cần xem trong pgAdmin, mở Query Tool mới cùng server/database và chạy riêng `6C` | Xem lại dữ liệu sau phục hồi và kiểm tra nhất quán |
+| 4 | Nhấp đúp [02_GAY_SU_CO.cmd](su_co/02_GAY_SU_CO.cmd) | Ngắt bất thường máy chủ thử nghiệm |
+| 5 | Nhấp đúp [03_KHOI_DONG_LAI.cmd](su_co/03_KHOI_DONG_LAI.cmd) | Khởi động lại và chờ máy chủ sẵn sàng |
+| 6 | Mở Query Tool mới cùng server/database, chạy riêng `6C` và chụp kết quả | `DA_COMMIT` còn; `CHUA_COMMIT` không còn; sổ cái cân đối |
+| 7 | Nhấp đúp [04_LUU_KET_QUA.cmd](su_co/04_LUU_KET_QUA.cmd) | Kiểm tra PASS và lưu CSV cùng log |
 
 **Sau 6B, giữ nguyên tab, không bấm COMMIT, ROLLBACK hoặc đóng kết nối trước khi gây sự cố.** Nút gây sự cố kiểm tra có giao dịch đang mở; nếu chưa chạy 6B hoặc đã kết thúc giao dịch, nó sẽ dừng và nhắc.
 
@@ -209,7 +208,6 @@ Các “nút” là file `.cmd`, gọi PowerShell để chạy [07_dieu_khien.ps
 | [05_TAT_SAU_DEMO.cmd](su_co/05_TAT_SAU_DEMO.cmd) | `Stop` | Gọi `pg_ctl stop -m fast` để tắt máy chủ thử nghiệm theo quy trình bình thường |
 | [06_XEM_LOG.cmd](su_co/06_XEM_LOG.cmd) | `Logs` | Đọc log và lọc các dòng về sự cố, REDO, trạng thái sẵn sàng |
 
-[DEMO_MOT_NUT.cmd](su_co/DEMO_MOT_NUT.cmd) gọi [08_demo_mot_nut.ps1](su_co/08_demo_mot_nut.ps1), thực hiện lần lượt **Crash → Start → Verify**. Nếu muốn tách từng bước để giải thích, có thể dùng riêng các nút 02, 03, 04; sau khởi động lại mở Query Tool mới chạy 6C.
 
 Nút 02 dừng bằng chế độ immediate, khiến lần khởi động sau cần crash recovery. Nút 05 dùng fast: kết thúc các giao dịch đang mở rồi tắt sạch. Đóng pgAdmin hoặc tắt máy chủ bình thường không thay thế tình huống ngắt bất thường này. Đây là mô phỏng tiến trình dừng bất thường, không phải kiểm thử cắt điện phần cứng.
 
@@ -251,7 +249,8 @@ Giữ nguyên `%~dp007_dieu_khien.ps1`: phần `%~dp0` được ghép trực ti�
 
 ## 11. Chạy lại demo sự cố
 
-- Trong cùng buổi: chạy lại từ `6A → 6B`, sau đó nhấp đúp `DEMO_MOT_NUT.cmd`. Mỗi lượt tự tạo mã mới.
+- Trong cùng buổi: chạy `6A → 6B → nút 02 → nút 03 → 6C → nút 04`. Mỗi lượt tự tạo mã mới.
+
 - Hôm khác: chạy `01_CHUAN_BI_VA_MO.cmd`, kết nối lại DEMO_SU_CO trong pgAdmin, mở file 06 rồi bắt đầu từ 6A.
 - Số tự động có thể nhảy sau ROLLBACK hoặc crash, ví dụ từ 1 lên 34. Không cần sửa thành số liên tiếp.
 - Khi xong: chạy `05_TAT_SAU_DEMO.cmd` để tắt riêng máy chủ thử nghiệm. Dữ liệu và kết quả đã lưu vẫn được giữ.
@@ -269,7 +268,7 @@ Phải ghi rõ loại thông tin khi đưa vào báo cáo:
 Bộ mã đã được kiểm tra trên PostgreSQL 18:
 
 - COMMIT, ROLLBACK, SAVEPOINT và bước chuẩn bị hai phiên đã được kiểm tra chạy lặp ba lượt.
-- Demo sự cố có hai lượt kiểm tra tách bước và một lượt kiểm tra cách một nút; các lượt này thực thi SQL bằng psql, không phải ảnh chụp pgAdmin.
+- Demo sự cố có hai lượt kiểm tra tách bước và một lượt bổ sung đã lưu; các lượt này thực thi SQL bằng psql, không phải ảnh chụp pgAdmin.
 - Kết quả và mốc thời gian cụ thể nằm trong [KET_QUA_THUC_NGHIEM.md](su_co/KET_QUA_THUC_NGHIEM.md), cùng các file trong [ket_qua](su_co/ket_qua/).
 
 Khi tự trình diễn bằng pgAdmin, cần lưu ảnh và kết quả của chính lượt đó. Không ghi rằng đã đo hoặc đã chụp giao diện nếu chưa thực hiện.
