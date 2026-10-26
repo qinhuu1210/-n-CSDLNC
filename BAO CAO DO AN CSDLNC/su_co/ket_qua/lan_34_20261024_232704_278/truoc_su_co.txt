@@ -1,0 +1,10 @@
+SET
+BEGIN
+DO
+ lan_demo |    loai     |    soct    | so_chung_tu | so_chi_tiet | so_dong_so_cai |  tong_no  |  tong_co  | da_ghi_so 
+----------+-------------+------------+-------------+-------------+----------------+-----------+-----------+-----------
+       34 | CHUA_COMMIT | D4-OPEN-34 |           1 |           1 |              2 | 200000.00 | 200000.00 | t
+       34 | DA_COMMIT   | D4-OK-34   |           1 |           1 |              2 | 100000.00 | 100000.00 | t
+(2 rows)
+
+

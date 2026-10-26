@@ -1,0 +1,6 @@
+﻿DO
+                          ket_qua                           
+------------------------------------------------------------
+ PASS: da COMMIT con; chua COMMIT khong con; so cai can doi
+(1 row)
+

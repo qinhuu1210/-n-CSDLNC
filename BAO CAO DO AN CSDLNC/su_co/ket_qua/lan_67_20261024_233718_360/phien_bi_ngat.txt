@@ -1,0 +1,6 @@
+NOTICE:  Đã ghi sổ chứng từ 77 (1 dòng, tổng tiền 200000.00)
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+connection to server was lost
+

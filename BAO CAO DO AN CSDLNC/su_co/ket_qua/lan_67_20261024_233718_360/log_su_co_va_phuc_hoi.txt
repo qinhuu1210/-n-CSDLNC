@@ -1,0 +1,13 @@
+﻿2026-10-24 23:37:16.789 +07 [4264] LOG:  received immediate shutdown request
+2026-10-24 23:37:16.797 +07 [4264] LOG:  database system is shut down
+2026-10-24 23:37:17.489 +07 [34356] LOG:  starting PostgreSQL 18.6 on x86_64-windows, compiled by msvc-19.44.35229, 64-bit
+2026-10-24 23:37:17.490 +07 [34356] LOG:  listening on IPv4 address "127.0.0.1", port 55490
+2026-10-24 23:37:17.534 +07 [33360] LOG:  database system was interrupted; last known up at 2026-10-24 23:37:15 +07
+2026-10-24 23:37:17.708 +07 [33360] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-10-24 23:37:17.711 +07 [33360] LOG:  redo starts at 0/1D80C40
+2026-10-24 23:37:17.716 +07 [33360] LOG:  invalid record length at 0/1D91770: expected at least 24, got 0
+2026-10-24 23:37:17.716 +07 [33360] LOG:  redo done at 0/1D91720 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-10-24 23:37:17.718 +07 [36392] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-10-24 23:37:17.729 +07 [36392] LOG:  checkpoint complete: wrote 27 buffers (1.3%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.007 s, total=0.012 s; sync files=29, longest=0.001 s, average=0.001 s; distance=66 kB, estimate=66 kB; lsn=0/1D91770, redo lsn=0/1D91770
+2026-10-24 23:37:17.737 +07 [34356] LOG:  database system is ready to accept connections
+
